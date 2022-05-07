@@ -3,7 +3,7 @@
 Install Python:
   * Mac: `brew install python@3.10`
   * relink: `brew unlink python@3.9 && brew link python@3.10`
-  * `echo 'export PATH="/usr/local/opt/python@3.10/bin:$PATH"' >> /Users/sundaram/.bash_profile`
+  * `echo 'export PATH="/usr/local/opt/python@3.10/bin:$PATH"' >> $HOME/.bash_profile`
 
 
 #Install module dependency:
