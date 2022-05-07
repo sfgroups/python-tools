@@ -1,0 +1,5 @@
+pandas
+flask
+sqlalchemy
+selenium
+python-dotenv
