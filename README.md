@@ -9,7 +9,7 @@ Install Python:
 #Install module dependency:
 
 * Create virtual environment: `python -m venv venv`
-* Activate virutal environment:  `source venv/bin/activate`    
+* Activate virtual environment:  `source venv/bin/activate`    
 * install dependencies:   `pip3 install -r requirements.txt`
 
 ```
