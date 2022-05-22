@@ -16,6 +16,8 @@ print(email)
 print(web_url)
 
 
+# https://github.com/WPIRoboticsEngineering/Workday-Automation/blob/master/invoice.py
+
 def login_site():
     driver = webdriver.Chrome('chromedriver')
     driver.get(web_url)
@@ -45,6 +47,7 @@ def login2():
     options.add_argument("--disable-extensions")
     driver = webdriver.Chrome(options=options)
     driver.get('https://login.live.com/login.srf')
+    driver.implicitly_wait(10)
     print("Page Title is : %s" % driver.title)
 
     EMAILFIELD = (By.ID, "i0116")
@@ -66,23 +69,23 @@ def login2():
     # Click Login - same id?
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable(NEXTBUTTON)).click()
 
-    #
-    # txt_email='//*[@id="i0116"]'
-    # element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, txt_email)))
-    # element.click()
-    # element.clear()
-    # element.send_keys("wbhyatt3@gmail.com")
-    # time.sleep(3)
-    # element.send_keys(Keys.RETURN)
-    # time.sleep(5)
-    # txt_password='//*[@id="i0118"]'
-    # element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, txt_password)))
-    # element.click()
-    # element.clear()
-    # element.send_keys("password")
-    # time.sleep(3)
-    # element.send_keys(Keys.RETURN)
-    time.sleep(13)
+    verify_id = "iLandingViewAction"
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.element_to_be_clickable((By.ID, verify_id)))
+    element.click()
+    wait = WebDriverWait(driver, 10)
+    val = input("Enter your value: ")
+    print(val)
+
+    id_proof2 = "iProof2"
+    element = wait.until(EC.element_to_be_clickable((By.ID, id_proof2)))
+    element.click()
+
+    id_verify_online = "iSelectProofAction"
+    element = wait.until(EC.element_to_be_clickable((By.ID, id_verify_online)))
+    element.click()
+
+    time.sleep(130)
     driver.close()
 
 
