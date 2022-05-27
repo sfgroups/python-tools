@@ -27,6 +27,7 @@ class User:
     )
     name: str = field(default=None, metadata={"sa": Column(String(50), nullable=False)})
     email: str = field(default=None, metadata={"sa": Column(String(50), nullable=False, index=True)})
+    age: int = field(default=None, metadata={"sa": Column(Integer)})
 
     created_time: datetime = field(default=None,
                                    metadata={"sa": Column(TIMESTAMP, nullable=True, default=datetime.utcnow())})
@@ -44,8 +45,8 @@ if __name__ == "__main__":
     mapper_registry.metadata.drop_all(engine)
     mapper_registry.metadata.create_all(engine)
 
-    u = User("Sammy", "sammy@yahoo.com")
-    u1 = User("Muthu", "muthu@yahoo.com")
+    u = User("Sammy", "sammy@yahoo.com",30)
+    u1 = User("Muthu", "muthu@yahoo.com",50)
 
     print(u)
     with Session() as session:
@@ -54,9 +55,18 @@ if __name__ == "__main__":
             session.add(u1)
             session.commit()
 
-    print("Display values")
-    with Session() as local_session:
-        us = local_session.query(User).all()
+    print("==== Display values")
+    with Session() as session:
+        us = session.query(User).all()
+        print(us)
+        print("==== Update values")
+        session.query(User).filter(User.id == 2).update({'name': "Siva"})
+        session.commit()
+        for c in session.query(User).all():
+            c.age = c.age + 1
+        session.commit()
+        print("==== Display values")
+        us = session.query(User).all()
         print(us)
 
 
