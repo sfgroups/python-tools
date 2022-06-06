@@ -18,5 +18,10 @@ pip install --upgrade --force-reinstall chromedriver-binary-auto
 
 ```
 
+Python Docker:
+
+    Docker bases image:  https://pythonspeed.com/articles/base-image-python-docker-images/
+
+
 workday:
 https://github.com/WPIRoboticsEngineering/Workday-Automation/blob/master/invoice.py
