@@ -5,3 +5,6 @@ selenium
 python-dotenv
 requests
 PyMySQL
+pymongo
+python-dotenv
+mysql-connector-python
