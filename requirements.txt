@@ -8,3 +8,10 @@ PyMySQL
 pymongo
 python-dotenv
 mysql-connector-python
+opencv-python
+pytesseract
+beautifulsoup4
+html5lib
+lxml
+loguru
+pyautogui
