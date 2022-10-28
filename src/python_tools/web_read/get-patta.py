@@ -117,6 +117,7 @@ def get_patta_fmb(ispatta=True):
                 if Path(download_folder, download_filename).exists():
                     logger.info(f'FMB Already downloaded : {download_filename}')
                 else:
+                    logger.info(f'Trying to downloaded : {download_filename}')
                     find_patta_fmb(driver, web_url, dc, tc, vc, None, surveyno, subdivno, download_folder,
                                    download_filename)
                     time.sleep(5)
@@ -186,12 +187,18 @@ def save_fmb(driver, surveyno, subdivno, download_folder, download_filename):
             driver.switch_to.window(w)
             break
 
-    time.sleep(10)
+    time.sleep(5)
 
     html_filename = Path(download_folder, download_filename)
     logger.info(f"Saving file : {html_filename}")
     with open(html_filename, "w") as f:
         f.write(driver.page_source)
+
+    if p != driver.current_window_handle:
+        driver.close()
+        driver.switch_to.window(p)
+    else:
+        logger.warning("New window didn't open")
 
 
 def save_patta(driver, patta, download_folder, download_filename):
@@ -232,15 +239,16 @@ def create_area_file():
         writer.writerow(["Patta", "Survey No", "Sub Division", "Area", "Cents", "Acer"])
         for patta in get_patta_as_list():
             filename = Path(download_folder, str(patta) + '.html')
-            line = parse(patta, filename)
-            if len(line) > 4:
-                writer.writerow(line)
+            lines = parse(patta, filename)
+            for line in lines:
+                if len(line) > 4:
+                    writer.writerow(line)
 
     logger.info(f"Area file:  {out_filename}")
 
 
 def parse(patta, filename):
-    ret_value = ""
+    ret_value = []
     with open(filename) as fp:
         soup = BeautifulSoup(fp, 'html.parser')
 
@@ -273,7 +281,7 @@ def parse(patta, filename):
                         if isprint:
                             cents = convert_hectare_to_acer(area)
                             acer = convert_cents_acer(cents)
-                            ret_value = [patta, survey_no, sub_number, area, f"{cents:.4}", f"{acer:.2}"]
+                            ret_value.append( [patta, survey_no, sub_number, area, f"{cents:.4}", f"{acer:.2}"])
 
                 count += 1
 
@@ -296,6 +304,7 @@ def convert_cents_acer(cents):
 
 
 if __name__ == "__main__":
+    # create_area_file()
     is_patta = True
     is_fmb = True
     if is_fmb:
