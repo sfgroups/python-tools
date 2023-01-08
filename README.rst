@@ -39,6 +39,16 @@ python-tools
 
 A longer description of your project goes here...
 
+   pip install -e .[testing]
+
+
+pytest::
+
+   dir()
+   repr()
+   vars()
+
+   https://thedmitry.pw/blog/2020/12/mocks-side-effect/
 
 .. _pyscaffold-notes:
 
