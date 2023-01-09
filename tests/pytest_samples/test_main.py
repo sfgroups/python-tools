@@ -27,3 +27,4 @@ def test_url_error(mocked_query):
         with pytest.raises(Exception) as excinfo:
             get_response_from_external_api(mocked_query)
         assert str(excinfo.value) == 'URLError'
+
