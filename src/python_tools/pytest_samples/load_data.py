@@ -1,7 +1,7 @@
 from python_tools.pytest_samples.slow import DataSet
 
 
-def slow_load():
+def slow_load(a=True):
     dataset = DataSet()
     return dataset.load_data()
 

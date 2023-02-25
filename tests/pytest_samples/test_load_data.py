@@ -3,6 +3,7 @@ from unittest.mock import patch
 import pytest
 
 from python_tools.pytest_samples.load_data import slow_load
+from python_tools.pytest_samples import load_data
 
 
 def test_slow_load():
@@ -29,18 +30,15 @@ def test_slow_load_01(mocker):
         assert str(excinfo.value) == 'URLError'
 
 
-@patch("python_tools.pytest_samples.load_data.DataSet", autospec=True)
-def test_slow_load_02(ds_mock):
-    ds_mock.load_data.side_effect = Exception('URLError')
-    with pytest.raises(Exception) as excinfo:
-        actual = slow_load()
-    assert str(excinfo.value) == 'URLError'
-
-
-@patch("python_tools.pytest_samples.load_data.DataSet")
-def test_slow_load_03(ds_mock):
-    with patch.object(ds_mock, 'load_data', side_effect=Exception('URLError')):
+def test_slow_load_04():
+    with patch.object(load_data.DataSet, 'load_data', side_effect=Exception('URLError')):
         with pytest.raises(Exception) as excinfo:
-            actual = slow_load()
+            actual = load_data.slow_load()
         assert str(excinfo.value) == 'URLError'
 
+
+def test_slow_load_05():
+    with patch(load_data.DataSet, 'load_data', side_effect=Exception('URLError')):
+        with pytest.raises(Exception) as excinfo:
+            actual = load_data.slow_load()
+        assert str(excinfo.value) == 'URLError'
