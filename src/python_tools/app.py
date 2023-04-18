@@ -1,6 +1,6 @@
-
-def lang_name(lname : str) -> str:
+def lang_name(lname: str) -> str:
     return lname.title()
+
 
 def _main():
     print("test")

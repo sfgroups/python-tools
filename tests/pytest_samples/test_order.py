@@ -1,5 +1,6 @@
 from unittest.mock import Mock
-from python_tools.pytest_samples.order import  Order
+
+from python_tools.pytest_samples.order import Order
 
 
 def test_order_is_filled():

@@ -12,4 +12,3 @@ def slow_load_ex():
         return dataset.load_data()
     except Exception as e:
         raise e
-

@@ -1,5 +1,7 @@
 import pytest
+
 from python_tools.pytest_samples.calc import mul
+
 
 @pytest.mark.parametrize(
     "a,b,expected",
@@ -7,6 +9,7 @@ from python_tools.pytest_samples.calc import mul
 )
 def test_mul_should_succeed_with_int_params(a, b, expected) -> None:
     assert mul(a, b) == expected
+
 
 @pytest.mark.parametrize(
     "a,b,expected",

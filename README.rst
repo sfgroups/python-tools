@@ -1,5 +1,5 @@
 .. These are examples of badges you might want to add to your README:
-   please update the URLs accordingly
+please update the URLs accordingly
 
     .. image:: https://api.cirrus-ci.com/github/<USER>/python-tools.svg?branch=main
         :alt: Built Status

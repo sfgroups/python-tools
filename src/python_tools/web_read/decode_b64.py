@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import base64
 from pathlib import Path
 

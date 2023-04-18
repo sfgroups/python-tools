@@ -1,6 +1,7 @@
 ** Inner join example
 
-https://hevodata.com/learn/mongodb-inner-join/#:~:text=The%20MongoDB%20database%20is%20well,aggregation%20method%20instead%20of%20Join.
+https://hevodata.com/learn/mongodb-inner-join/#:~:text=The%20MongoDB%20database%20is%20well,aggregation%20method%20instead%20of%20Join
+.
 
 ```
 db.chelsea.insertMany( [

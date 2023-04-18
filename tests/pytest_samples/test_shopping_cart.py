@@ -1,7 +1,9 @@
 from unittest.mock import Mock
+
+import pytest
+
 from python_tools.pytest_samples.item_database import ItemDatabase
 from python_tools.pytest_samples.shopping_cart import ShoppingCart
-import pytest
 
 
 @pytest.fixture

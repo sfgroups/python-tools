@@ -1,7 +1,5 @@
-import requests, lxml
+import requests
 from bs4 import BeautifulSoup
-import time
-from selenium import webdriver
 
 
 def Bot():
@@ -13,6 +11,7 @@ def Bot():
     # search.send_keys(Keys.RETURN)
     # time.sleep(5)
     # bot.quit()
+
 
 def DoIt():
     headers = {
@@ -29,6 +28,7 @@ def DoIt():
         snippet = result.select_one(".lEBKkf span").text
 
         print(f"{title}\n{link}\n{displayed_link}\n{snippet}\n")
+
 
 if __name__ == "__main__":
     DoIt()

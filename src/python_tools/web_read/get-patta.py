@@ -10,7 +10,6 @@ from loguru import logger
 from pytesseract import image_to_string
 from requests.structures import CaseInsensitiveDict
 from selenium import webdriver
-from selenium.common import ElementClickInterceptedException
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -281,7 +280,7 @@ def parse(patta, filename):
                         if isprint:
                             cents = convert_hectare_to_acer(area)
                             acer = convert_cents_acer(cents)
-                            ret_value.append( [patta, survey_no, sub_number, area, f"{cents:.4}", f"{acer:.2}"])
+                            ret_value.append([patta, survey_no, sub_number, area, f"{cents:.4}", f"{acer:.2}"])
 
                 count += 1
 

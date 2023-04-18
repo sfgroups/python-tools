@@ -1,6 +1,6 @@
+import pymongo
 from dotenv import find_dotenv, dotenv_values
 from requests.structures import CaseInsensitiveDict
-import pymongo
 
 
 def connect_mongodb():

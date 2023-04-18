@@ -1,18 +1,14 @@
 from __future__ import annotations
 
-import os
-import sys
 from dataclasses import dataclass
 from dataclasses import field
 from datetime import datetime
-
-from sqlalchemy import Column, String, Integer, create_engine, UniqueConstraint, TIMESTAMP, text
-from sqlalchemy.orm import registry
-from sqlalchemy.orm import sessionmaker
 from pathlib import Path
 
 import lib.utils.utils as utils
-
+from sqlalchemy import Column, String, Integer, create_engine, UniqueConstraint, TIMESTAMP
+from sqlalchemy.orm import registry
+from sqlalchemy.orm import sessionmaker
 
 mapper_registry = registry()
 
@@ -46,8 +42,8 @@ if __name__ == "__main__":
     mapper_registry.metadata.drop_all(engine)
     mapper_registry.metadata.create_all(engine)
 
-    u = User("Sammy", "sammy@yahoo.com",30)
-    u1 = User("Muthu", "muthu@yahoo.com",50)
+    u = User("Sammy", "sammy@yahoo.com", 30)
+    u1 = User("Muthu", "muthu@yahoo.com", 50)
 
     print(u)
     with Session() as session:
@@ -69,6 +65,3 @@ if __name__ == "__main__":
         print("==== Display values")
         us = session.query(User).all()
         print(us)
-
-
-

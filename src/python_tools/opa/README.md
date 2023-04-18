@@ -7,6 +7,7 @@ Start OPA with the example policy:
 ```bash
 opa run -s example.rego
 ```
+
 # with docker image
 
 ```bash
@@ -29,13 +30,13 @@ curl -H 'Authorization: alice' -H 'Content-Type: application/json' \
 
 As a car admin, try to delete a car (this should be denied):
 
-
 ```bash
 curl -H 'Authorization: kelly' \
     -X DELETE localhost:8080/cars/test-car
 ```
 
 # this will allow us to delete the car
+
 ```bash
 curl -H 'Authorization: james'     -X DELETE localhost:8080/cars/test-car
 ```

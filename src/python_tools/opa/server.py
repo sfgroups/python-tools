@@ -2,15 +2,12 @@
 """
 Car Store App
 """
-import base64
-import os
 import json
-from functools import wraps
-import requests
 import logging
-import sys
-import urllib
-from flask import Flask, request, jsonify, make_response, abort, url_for
+import os
+
+import requests
+from flask import Flask, request, jsonify, abort, url_for
 
 __version__ = "0.1"
 
@@ -113,7 +110,6 @@ def setup_logging():
 
 
 def pump_db():
-
     mock_cars = [
         {
             "id": "663dc85d-2455-466c-b2e5-76691b0ce14e",

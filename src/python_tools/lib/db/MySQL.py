@@ -33,7 +33,7 @@ def get_engine():
 
 
 if __name__ == "__main__":
-    var=10
+    var = 10
     print(f"{var = }")
     x = get_engine_kwargs()
     print(x)

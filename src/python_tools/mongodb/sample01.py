@@ -1,5 +1,6 @@
-from lib.db.connect_mongodb import connect_mongodb
 from random import randint
+
+from lib.db.connect_mongodb import connect_mongodb
 
 DB_NAME = "api-mongodb-sample-database"
 UNSHARDED_COLLECTION_NAME = "unsharded-sample-collection"
@@ -78,8 +79,6 @@ def main():
     read_document(collection, document_id)
     update_document(collection, document_id)
     # delete_document(collection, document_id)
-
-
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@ from unittest.mock import patch
 
 import pytest
 
-from python_tools.pytest_samples.load_data import slow_load
 from python_tools.pytest_samples import load_data
+from python_tools.pytest_samples.load_data import slow_load
 
 
 def test_slow_load():
