@@ -9,7 +9,7 @@ from weasyprint import HTML
 app = FastAPI()
 
 
-def convert_html_to_pdf(html_content: str, output_file: str):
+def convert_string_html_to_pdf(html_content: str, output_file: str):
     print("String conversion")
     html = HTML(string=html_content)
     pdf = html.write_pdf(output_file)
@@ -18,20 +18,20 @@ def convert_html_to_pdf(html_content: str, output_file: str):
 
 def convert_html_file_to_pdf(html_file: str, output_file: str):
     print("String conversion")
-    html = HTML(string=html_file)
+    html = HTML(filename=html_file)
     pdf = html.write_pdf(output_file)
     print("PDF conversion complete")
 
 
 @app.get("/file")
 async def start(background_tasks: BackgroundTasks):
-    background_tasks.add_task(convert_html_to_pdf, html_content="sample.html", output_file="sample.pdf")
+    background_tasks.add_task(convert_html_file_to_pdf, html_file="sample.html", output_file="ws-sample.pdf")
     return {"status": "ok"}
 
 
 @app.get("/start")
 async def start(background_tasks: BackgroundTasks):
-    background_tasks.add_task(convert_html_to_pdf, html_content="<h1>Hello World</h1>", output_file="hello.pdf")
+    background_tasks.add_task(convert_string_html_to_pdf, html_content="<h1>Hello World</h1>", output_file="hello.pdf")
     return {"status": "ok"}
 
 
