@@ -1,0 +1,23 @@
+venv
+.pytest_cache
+.cache
+# Ignore common development and system files
+*.pyc
+__pycache__
+
+# Ignore editor and IDE specific files
+.vscode
+*.idea
+*.pyc
+*.pyo
+*.swp
+*~
+
+# Ignore local development files
+venv
+.env
+
+# Ignore build artifacts
+*.egg-info
+dist
+build

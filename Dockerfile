@@ -1,38 +1,38 @@
-# Stage 1: Build the application
-FROM python:3.11-bullseye AS build
 
-RUN useradd -m nonroot
+FROM python:3.10-bullseye
 
+ARG USERNAME=appuser
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN apt-get update \
+    && apt-get install -y curl chromium  \
+    build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 \
+    libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info  chromium-driver \
+    fonts-noto-color-emoji
+
+RUN mkdir -p -m 775 /app && chown $USER_UID:$USER_GID /app
 WORKDIR /app
 
-COPY requirements.txt .
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
-RUN pip install --no-cache-dir -r requirements.txt
+USER $USERNAME
 
-COPY app app
+COPY --chown=$USER_UID:$USER_GID . .
 
-# Stage 2: Create the production image
-FROM python:3.11-slim-bullseye
+ENV VIRTUAL_ENV=/app/venv
+RUN python -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN useradd -m nonroot
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium
 
-WORKDIR /app
+RUN pip install  -e .
+EXPOSE 8080
 
-COPY --from=build /app .
+RUN chmod +x /app/entrypoint.sh
 
-COPY ssl.key /app/
-COPY ssl.cert /app/
-
-
-ENV DB_PASSWORD=changeme
-ENV API_KEY=changeme
-
-EXPOSE 80
-
-
-EXPOSE 443
-
-USER nonroot
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "443", "--ssl-keyfile", "/app/ssl.key", "--ssl-certfile", "/app/ssl.cert"]
+CMD ["bash"]
 
