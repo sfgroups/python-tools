@@ -6,10 +6,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 RUN apt-get update \
-    && apt-get install -y curl chromium  \
-    build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 \
-    libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info  chromium-driver \
-    fonts-noto-color-emoji
+    && apt-get install -y curl chromium \
 
 RUN mkdir -p -m 775 /app && chown $USER_UID:$USER_GID /app
 WORKDIR /app

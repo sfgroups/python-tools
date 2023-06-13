@@ -1,5 +1,7 @@
 import asyncio
+import os
 import subprocess
+import sys
 
 import uvicorn
 from fastapi import BackgroundTasks, FastAPI
@@ -35,6 +37,12 @@ async def start(background_tasks: BackgroundTasks):
     return {"status": "ok"}
 
 
+@app.get("/samethread")
+async def pyconvert(background_tasks: BackgroundTasks):
+    background_tasks.add_task(call_convert)
+    return {"status": "ok"}
+
+
 @app.get("/pyconvert")
 async def pyconvert(background_tasks: BackgroundTasks):
     background_tasks.add_task(call_another_script)
@@ -64,15 +72,8 @@ async def convert_html_to_pdf(html_file, pdf_file):
     await browser.close()
 
 
-def call_convert():
-    print("String conversion")
-    html_file = "/app/src/python_tools/fastapi/sample.html"
-    pdf_file = html_file.replace(".html", ".pdf")
-    asyncio.get_event_loop().run_until_complete(convert_html_to_pdf(html_file, pdf_file))
-    print("PDF conversion complete")
-
 def call_another_script():
-    command = ['/app/venv/bin/python', '/app/src/python_tools/fastapi/pyp-html2pdf.py', 'arg1', 'arg2']
+    command = [sys.executable, '/app/src/python_tools/fastapi/pyp-html2pdf.py', 'arg1', 'arg2']
     # Run the command and capture the output
     result = subprocess.run(command, capture_output=True, text=True)
 
@@ -87,6 +88,38 @@ def call_another_script():
         print("Error executing the script.")
         print("Error message:")
         print(result.stderr)
+
+async def same_thread_html_to_pdf(html_file, pdf_file):
+    browser = await launch(headless=True, ignoreHTTPSErrors=True, args=['--no-sandbox'], dumpio=True)
+    page = await browser.newPage()
+
+    # Set the content of the page to the HTML file
+    with open(html_file, 'r') as f:
+        html_content = f.read()
+    await page.setContent(html_content)
+
+    # Generate the PDF
+    await page.pdf({'path': pdf_file})
+
+    # Close the browser
+    await browser.close()
+
+
+def call_convert():
+    print("Environment variables:")
+    for key, value in os.environ.items():
+        print(f"{key} = {value}")
+    print("String conversion")
+    html_file = "/app/src/python_tools/fastapi/sample.html"
+    pdf_file = html_file.replace(".html", ".pdf")
+    try:
+        asyncio.get_event_loop().run_until_complete(same_thread_html_to_pdf(html_file, pdf_file))
+    except RuntimeError:
+        print("No current event loop in thread 'AnyIO worker thread'")
+        call_another_script()
+
+    print("PDF conversion complete")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)

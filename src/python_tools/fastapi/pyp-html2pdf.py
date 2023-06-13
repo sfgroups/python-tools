@@ -1,10 +1,16 @@
 import asyncio
+import sys
 
+import pyppeteer
 from pyppeteer import launch
+
+pyppeteer.DEBUG = True
 
 
 async def convert_html_to_pdf(html_file, pdf_file):
-    browser = await launch(headless=True, ignoreHTTPSErrors=True, args=['--no-sandbox'], dumpio=True)
+    browser = await launch(headless=True, ignoreHTTPSErrors=True,
+                           args=["--disable-gpu", "--disable-dev-shm-usage", "--disable-setuid-sandbox",
+                                 "--no-sandbox", ], dumpio=True, executablePath='/usr/bin/chromium')
     page = await browser.newPage()
 
     # Set the content of the page to the HTML file
@@ -91,52 +97,6 @@ def generate_html_file(file_name):
             </tr>
         </table>
 
-        <h2>Heading 2</h2>
-        <table>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-            </tr>
-            <tr>
-                <td style="background-color: violet;">Row 1, Cell 1</td>
-                <td style="background-color: aqua;">Row 1, Cell 2</td>
-                <td style="background-color: coral;">Row 1, Cell 3</td>
-            </tr>
-            <tr>
-                <td style="background-color: lavender;">Row 2, Cell 1</td>
-                <td style="background-color: thistle;">Row 2, Cell 2</td>
-                <td style="background-color: silver;">Row 2, Cell 3</td>
-            </tr>
-        </table>
-
-        <h1>Sample HTML Table</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>City</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John Doe</td>
-        <td>30</td>
-        <td>New York</td>
-      </tr>
-      <tr>
-        <td>Jane Smith</td>
-        <td>25</td>
-        <td>London</td>
-      </tr>
-      <tr>
-        <td>Bob Johnson</td>
-        <td>40</td>
-        <td>Paris</td>
-      </tr>
-    </tbody>
-  </table>
    <h1>Heading 1</h1>
         <table>
             <tr>
@@ -180,4 +140,5 @@ def generate_html_file(file_name):
 
 
 if __name__ == "__main__":
+    print(sys.argv)
     call_html_to_pdf()
