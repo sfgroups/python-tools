@@ -28,3 +28,6 @@ pytest::
 
 
 curl -X POST -d 'html_content=<html><body><h1>Hello, World!</h1></body></html>' http://localhost:8000/convert
+
+consul:
+https://sleeplessbeastie.eu/2022/09/09/how-to-secure-consul-communication/
