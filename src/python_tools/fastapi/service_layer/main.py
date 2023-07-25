@@ -2,18 +2,18 @@
 
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from .database import DatabaseSingleton, SessionLocal
+from fastapi_utils.session import FastAPISessionMaker
+from .database import Base, engine, SessionLocal
 from . import service, models
+
+# Create the database tables
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 # Dependency to get the database session
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
+def get_db() -> Session:
+    yield from FastAPISessionMaker(SessionLocal)
 
 # API Endpoint to create an item
 @app.post("/items/", response_model=models.Item)

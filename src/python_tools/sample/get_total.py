@@ -1,4 +1,4 @@
-from python_tools.sample.service import Service
+from python_tools.fastapi.service_layer.service import Service
 
 
 class GetTotal:
