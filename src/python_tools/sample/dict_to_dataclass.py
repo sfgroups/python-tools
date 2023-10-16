@@ -1,5 +1,6 @@
 import json
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
+
 from dataclasses_json import dataclass_json
 
 # Sample JSON data
@@ -15,6 +16,7 @@ json_data = '''
 }
 '''
 
+
 # Define a function to convert nested dictionaries to dataclasses recursively
 def dict_to_dataclass(dataclass_type, data):
     fields = dataclass_type.__dataclass_fields__
@@ -23,6 +25,7 @@ def dict_to_dataclass(dataclass_type, data):
         for field_name in fields
     }
     return dataclass_type(**kwargs)
+
 
 # Define the main dataclass representing the JSON structure
 @dataclass_json
@@ -33,11 +36,13 @@ class Person:
     address: 'Address'
     hobbies: list
 
+
 @dataclass_json
 @dataclass
 class Address:
     street: str
     city: str
+
 
 # Load JSON data into a dictionary
 json_dict = json.loads(json_data)

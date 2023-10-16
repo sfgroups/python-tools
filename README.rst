@@ -31,3 +31,22 @@ curl -X POST -d 'html_content=<html><body><h1>Hello, World!</h1></body></html>' 
 
 consul:
 https://sleeplessbeastie.eu/2022/09/09/how-to-secure-consul-communication/
+
+```
+function hasHTMLCharacters(inputString) {
+  // Define a regular expression to match HTML tags or entities
+  const htmlPattern = /<[^>]*>|&[^;]+;/;
+
+  // Test if the input string contains HTML characters
+  return htmlPattern.test(inputString);
+}
+
+// Example usage:
+const string1 = "This is a normal string";
+const string2 = "This string contains <b>HTML</b> tags";
+const string3 = "This string contains &lt;HTML&gt; entities";
+
+console.log(hasHTMLCharacters(string1)); // false
+console.log(hasHTMLCharacters(string2)); // true
+console.log(hasHTMLCharacters(string3)); // true
+```

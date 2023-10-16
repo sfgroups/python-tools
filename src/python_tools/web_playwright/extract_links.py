@@ -1,5 +1,7 @@
 import asyncio
-from playwright.async_api import async_playwright, Error
+
+from playwright.async_api import async_playwright
+
 
 async def main():
     async with async_playwright() as p:
@@ -23,6 +25,7 @@ async def main():
         # Close the browser and context
         await context.close()
         await browser.close()
+
 
 if __name__ == '__main__':
     asyncio.run(main())

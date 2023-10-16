@@ -2,6 +2,7 @@
 
 import json
 
+
 class SingletonConfig:
     _instance = None
     _config = None

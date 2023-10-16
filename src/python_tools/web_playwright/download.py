@@ -72,6 +72,5 @@ if __name__ == '__main__':
         text = resolve_captcha(download_file)
         print(f"First: [{text}]")
 
-
     # with sync_playwright() as playwright:
     #     run(playwright)

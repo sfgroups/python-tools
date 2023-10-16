@@ -1,5 +1,6 @@
 import threading
 
+
 class Singleton:
     _instance = None
     _lock = threading.Lock()
@@ -13,10 +14,12 @@ class Singleton:
                     cls._instance = super(Singleton, cls).__new__(cls)
         return cls._instance
 
+
 # Usage example
 def create_instance():
     instance = Singleton()
     print(f"Instance ID: {id(instance)}")
+
 
 # Simulate multiple threads accessing the singleton
 threads = []

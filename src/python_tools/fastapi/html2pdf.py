@@ -89,6 +89,7 @@ def call_another_script():
         print("Error message:")
         print(result.stderr)
 
+
 async def same_thread_html_to_pdf(html_file, pdf_file):
     browser = await launch(headless=True, ignoreHTTPSErrors=True, args=['--no-sandbox'], dumpio=True)
     page = await browser.newPage()

@@ -2,7 +2,6 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch()
     page = browser.new_page()
@@ -14,9 +13,9 @@ with sync_playwright() as playwright:
 
     page.wait_for_load_state('networkidle')
 
-    p = Path(html_file_path ).parent
-    s = f"{Path(html_file_path ).stem}.pdf"
-    pdf_file_path = str(Path(p,s ))
+    p = Path(html_file_path).parent
+    s = f"{Path(html_file_path).stem}.pdf"
+    pdf_file_path = str(Path(p, s))
     print(pdf_file_path)
     pdf_options = {
         'path': pdf_file_path,
@@ -27,12 +26,11 @@ with sync_playwright() as playwright:
     page.close()
     browser.close()
 
-
 with sync_playwright() as p:
     browser = p.chromium.launch()
     page = browser.new_page()
     page.goto("https://www.sfgroups.com")
 
-    page.screenshot(path=f"{Path(html_file_path ).parent}/example.png")
+    page.screenshot(path=f"{Path(html_file_path).parent}/example.png")
     page.close()
     browser.close()
