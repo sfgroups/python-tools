@@ -56,3 +56,5 @@ MANIFEST
 /venv/
 /venv/*
 venv/
+/src/python_tools/data/my_database.db
+/src/python_tools/data/test.db
