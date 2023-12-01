@@ -1,0 +1,47 @@
+2. Configure WireMock:
+
+Create a properties file: Create a file named wiremock.properties in the same directory as the WireMock JAR file.
+Add the following properties to the file:
+Properties
+https.port=8443
+https.keystore.path=<path/to/keystore.jks>
+https.keystore.password=<keystore_password>
+Use code with caution. Learn more
+3. Generate a keystore:
+
+Import your enterprise certificate and private key into a keystore: You can use Java keytool to import both the certificate and private key into a new keystore. For example:
+keytool -genkeypair -alias <alias_name> -keyalg RSA -keysize 2048 -keystore keystore.jks -storepass <keystore_password>
+keytool -import -file <certificate_file.pem> -keystore keystore.jks -alias <alias_name> -storepass <keystore_password>
+
+4. Start WireMock:
+
+Run the following command to start WireMock in HTTPS mode:
+java -jar wiremock-standalone.jar --https-port=8443 --keystore-path=wiremock.properties
+
+=======
+
+Generate a Keystore:
+If you don't have a keystore, you can generate one using the keytool command that comes with the Java Development Kit (JDK). For example:
+
+bash
+Copy code
+keytool -genkeypair -keyalg RSA -keysize 2048 -keystore your_keystore.jks -validity 365 -alias your_alias
+Follow the prompts to enter information like the keystore password, distinguished name fields, etc.
+
+Import Enterprise Certificate:
+If you already have an enterprise certificate, you may need to import it into the keystore:
+
+bash
+Copy code
+keytool -importcert -file your_enterprise_certificate.pem -keystore your_keystore.jks -alias your_alias
+Replace your_enterprise_certificate.pem with the path to your enterprise certificate file.
+
+Run WireMock in HTTPS mode:
+Once you have your keystore ready, you can start WireMock in HTTPS mode. Use the --https-port option to specify the HTTPS port and the --keystore option to specify the path to your keystore:
+
+bash
+Copy code
+java -jar wiremock-standalone.jar --https-port 8443 --keystore your_keystore.jks
+Replace wiremock-standalone.jar with the actual name of your WireMock JAR file.
+
+Optionally, you can specify other configuration options like --truststore if you have a truststore with trusted certificates.
