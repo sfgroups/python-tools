@@ -5,6 +5,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
+import sys
+import requests
+
+from python_tools.fastapi.web_response import WebMessage
+
 app = FastAPI()
 
 origins = ["*"]
@@ -35,6 +40,18 @@ app.add_middleware(DisableCacheMiddleware)
 def get_root():
     return "Hello, World!"
 
+@app.get("/v1")
+def get_root():
+    print_imports_paths()
+    return WebMessage().return_text()
+
+@app.get("/v2")
+def get_root():
+    sys.path.insert(0, "/Users/sundaram/temp/python-tools/src")
+    sys.path.insert(0, "/Users/sundaram/temp/python-tools/src/python_tools/fastapi")
+    print_imports_paths()
+    return WebMessage().return_text()
+
 
 def run():
     ssl_keyfile = "/path/to/ssl.key"
@@ -50,5 +67,13 @@ def run():
     server.run()
 
 
+def print_imports_paths():
+    for idx, path in enumerate(sys.path, 1):
+        print(f'{idx} - {path}')
+
+    print(f'\nrequests module location - {requests.__file__}')
+
+
 if __name__ == "__main__":
+    print_imports_paths()
     run()
