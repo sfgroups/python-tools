@@ -1,38 +1,35 @@
 from bs4 import BeautifulSoup
 
-# HTML content
+# Corrected HTML content
 html_content = """
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My HTML Template</title>
+  <title>My First HTML Page</title>
 </head>
 <body>
-    <h1> sample code</h1>
-    bleow is the text file
-    <h2> Source Information</h2>
-        <strong>Template version: 20</strong>
+  <h1>Hello, world!</h1>
+  <p>This is my first HTML page.</p>
+  <p><strong>System Owner</strong> | </p>
+  <p><strong>Authorizing Officials</strong> | J |</p>
+  <p><strong>Designated Delegates</strong> | J |</p>
+  <p><strong>Operational Status</strong> | Draft |</p>
 
+  <h2>1.2 Source Reference</h2>
+
+  <p>| | |
+  |--|--|
+  |<strong>Template Version</strong> | 2.0 |</p>
 </body>
 </html>
 """
 
-# Parse HTML content
+# Parse the corrected HTML content
 soup = BeautifulSoup(html_content, 'html.parser')
 
-# Find h2 tag with text 'Source Information'
-h2_tag = soup.find('h2', text=' Source Information')
+# Find row containing "Template Version" and extract version number
+template_version_row = soup.find(text="Template Version").find_parent('p')
+version_number = template_version_row.find_all('strong')[-1].next_sibling.strip()
 
-# Extract template version value
-if h2_tag:
-    strong_tag = h2_tag.find_next_sibling('strong')
-    if strong_tag:
-        version_text = strong_tag.get_text()
-        template_version = version_text.split(':')[-1].strip()
-        print("Template Version:", template_version)
-    else:
-        print("No template version found.")
-else:
-    print("No 'Source Information' found.")
+# Print the extracted version number
+print(f"Version Number: {version_number}")
