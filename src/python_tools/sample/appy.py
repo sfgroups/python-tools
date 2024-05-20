@@ -1,6 +1,15 @@
-from flask import Flask, request, render_template_string
+from fastapi import FastAPI, Form, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
-app = Flask(__name__)
+app = FastAPI()
+
+# Set up Jinja2 templates
+templates = Jinja2Templates(directory="templates")
+
+# Mount static files for serving CSS and JS
+#app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # HTML form template with Bootstrap and validation
 form_template = """
@@ -89,15 +98,14 @@ response_template = """
 </html>
 """
 
-@app.route('/')
-def form():
-    return render_template_string(form_template)
+@app.get("/", response_class=HTMLResponse)
+async def form(request: Request):
+    return templates.TemplateResponse("form.html", {"request": request})
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    field1 = request.form['field1']
-    field2 = request.form['field2']
-    return render_template_string(response_template, field1=field1, field2=field2)
+@app.post("/submit", response_class=HTMLResponse)
+async def submit(request: Request, field1: str = Form(...), field2: str = Form(...)):
+    return templates.TemplateResponse("response.html", {"request": request, "field1": field1, "field2": field2})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)
