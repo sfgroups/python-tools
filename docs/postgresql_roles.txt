@@ -1,0 +1,29 @@
+Create the Role:
+
+-- Create the application role
+CREATE ROLE app_role;
+
+-- Grant full permissions to the role on the specified database
+GRANT ALL PRIVILEGES ON DATABASE your_database TO app_role;
+
+-- Grant full permissions to the role on all tables in the specified schema
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO app_role;
+
+-- Grant full permissions to the role on all sequences in the specified schema
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO app_role;
+
+-- Grant full permissions to the role on all functions in the specified schema
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO app_role;
+
+Assign the Role to a User:
+-- Create a user if it does not exist
+CREATE USER app_user WITH PASSWORD 'securepassword';
+
+-- Grant the application role to the user
+GRANT app_role TO app_user;
+
+Adjust Role Settings (if needed):
+-- Set default privileges for future tables, sequences, and functions created by app_user
+ALTER DEFAULT PRIVILEGES FOR ROLE app_user IN SCHEMA public GRANT ALL ON TABLES TO app_role;
+ALTER DEFAULT PRIVILEGES FOR ROLE app_user IN SCHEMA public GRANT ALL ON SEQUENCES TO app_role;
+ALTER DEFAULT PRIVILEGES FOR ROLE app_user IN SCHEMA public GRANT ALL ON FUNCTIONS TO app_role;
