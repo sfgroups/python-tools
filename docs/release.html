@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<pre>
+Step	Description
+1. Creating a Change Record	Before deploying code changes, a change record must be created. This record documents the changes and helps with tracking and auditing. You can create a change record in your issue tracking system (e.g., Jira) or a dedicated change management tool.
+The change record should include:
+* Title: Briefly describe the change (e.g., "Bug fix for login issue")
+* Description: Detail the changes made and their impact
+* Issue(s) addressed: Link any related issues (e.g., Jira tickets)
+* Severity: Classify the change based on urgency and impact (e.g., critical, high, medium, low)
+* Risk assessment: Identify potential risks associated with the change
+2. GitLab CI/CD Build Job Details	Your GitLab CI/CD pipeline should automate building, testing, and potentially deploying your code. This guide focuses on the build job details relevant to deployments.
+* Build Number: The CI/CD pipeline assigns a unique build number to each execution. Include this number in the change record for traceability. You can access the build number as an environment variable within your build script.
+* One-Click Deployment: If your pipeline offers a one-click deployment option, ensure it's clearly documented for approved personnel. Specify any pre-requisites or confirmations required before triggering deployment.
+3. Deployment Options	There might be different deployment environments (e.g., staging, production). This guide should detail the available deployment methods for each environment:
+* Automated Deployment: Describe how successful builds automatically trigger deployments (if applicable). This might involve specifying deployment scripts or configuration within your CI/CD pipeline.
+* Manual Deployment: Explain the process for manual deployments, including tools or commands used.
+4. Breakglass Account	A breakglass account is a highly privileged account used only in emergency situations to deploy critical fixes outside the standard process.
+Restricted Access	* List Breakglass Accounts: This section should be restricted and only accessible to authorized personnel. It should list the breakglass accounts and the approval process required for their use.
+* Breakglass Account Usage: Document the strict guidelines for using breakglass accounts. This might include requiring justification, multi-factor authentication, and logging all deployments made with these accounts.
+5. Change Approval
+* Define the approval process for code deployments. This might involve code reviews, security checks, and approvals from designated personnel.
+* Specify who can approve deployments for different environments (e.g., staging vs production).
+6. Deployment Validation
+* Describe the steps for validating a successful deployment after it's complete. This may involve automated tests, manual smoke testing, or a combination of both.
+* Define rollback procedures in case a deployment causes issues.
+</pre>
+</body>
+</html>
