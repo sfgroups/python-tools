@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyMCE with jQuery Example</title>
+    <!-- jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- TinyMCE from CDN -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+    <h1>TinyMCE Rich Text Editor with Table Support</h1>
+
+    <!-- Textarea for TinyMCE -->
+    <textarea id="editor"></textarea>
+
+    <!-- Button to Print Output -->
+    <button id="print-output">Print Output</button>
+
+    <!-- Initialize TinyMCE with jQuery -->
+    <script>
+        $(document).ready(function() {
+            tinymce.init({
+                selector: '#editor',
+                plugins: 'table lists link image',
+                toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image',
+                menubar: 'file edit view insert format tools table',
+                height: 300
+            });
+
+            // Handle button click to print content
+            $('#print-output').click(function() {
+                var content = tinymce.get('editor').getContent();
+                console.log(content);
+            });
+        });
+    </script>
+</body>
+</html>

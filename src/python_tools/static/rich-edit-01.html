@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rich Text Editor with jQuery</title>
+    <!-- Quill.js 2.0.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <!-- jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Rich Text Editor Example</h1>
+    <!-- Editor Container -->
+    <div id="editor-container" style="height: 200px;">
+    </div>
+    <br>
+    <!-- Button to Print Output -->
+    <button id="print-output">Print Output</button>
+
+    <!-- Quill.js 2.0.2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.min.js"></script>
+    <script>
+        // Initialize Quill editor
+        var quill = new Quill('#editor-container', {
+            theme: 'snow'  // Specify theme
+        });
+
+        // Print editor content as HTML to console on button click
+        $('#print-output').click(function() {
+            var htmlContent = quill.root.innerHTML;
+            console.log(htmlContent);
+        });
+    </script>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
