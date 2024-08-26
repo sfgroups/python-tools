@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKEditor 5 with jQuery and JSON Example</title>
+    <!-- jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- CKEditor 5 from CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+</head>
+<body>
+    <h1>CKEditor 5 Rich Text Editor with JSON Example</h1>
+
+    <!-- Textarea for CKEditor 5 -->
+    <textarea id="editor"></textarea>
+
+    <!-- Button to Store Content in JSON -->
+    <button id="store-json">Store Content in JSON</button>
+
+    <!-- Initialize CKEditor 5 with jQuery -->
+    <script>
+        let editorInstance;
+
+        // Initialize CKEditor 5
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                editorInstance = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Handle button click to store content in JSON
+        $('#store-json').click(function() {
+            if (editorInstance) {
+                // Get the HTML content from the editor
+                var htmlContent = editorInstance.getData();
+
+                // Create a JSON object with the HTML content
+                var jsonData = {
+                    "htmlContent": htmlContent
+                };
+
+                // Convert the JSON object to a JSON string
+                var jsonString = JSON.stringify(jsonData);
+
+                // Log the JSON string to the console
+                console.log(jsonString);
+            } else {
+                console.log("Editor is not yet initialized.");
+            }
+        });
+    </script>
+</body>
+</html>
