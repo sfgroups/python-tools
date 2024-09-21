@@ -28,7 +28,7 @@ from python_tools import __version__
 
 __author__ = "software groups"
 __copyright__ = "software groups"
-__license__ = "MIT"
+# __license__ = "MIT"
 
 _logger = logging.getLogger(__name__)
 

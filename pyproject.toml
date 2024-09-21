@@ -7,3 +7,20 @@ build-backend = "setuptools.build_meta"
 # For smarter version schemes and other configuration options,
 # check out https://github.com/pypa/setuptools_scm
 version_scheme = "no-guess-dev"
+
+[project]
+dynamic = ["version", "dependencies", "optional-dependencies"]
+name = "python-tools"
+description = "Add a short description here!"
+#author = "software groups"
+#license = "MIT"
+#license_files = "LICENSE.txt"
+#long_description = "file: README.rst"
+#long_description_content_type = "text/x-rst; charset=UTF-8"
+#url = "https://github.com/pyscaffold/pyscaffold/"
+# Add here related links, for example:
+#project_urls = "Documentation = https://pyscaffold.org/"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies = {dev = { file = ["requirements-dev.txt"] }}
