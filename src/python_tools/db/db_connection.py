@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
 def get_connection_url():
@@ -31,8 +32,13 @@ def get_sqlalchemy_engine():
     sqlite_url = get_connection_url()
 
     # Create an SQLAlchemy engine using the SQLite URL
-    engine = create_engine(sqlite_url, echo=True)  # `echo=True` for SQL query logging
+    engine = create_engine(sqlite_url, echo=False)  # `echo=True` for SQL query logging
     return engine
+
+
+def get_db():
+    session_local = sessionmaker(bind=get_sqlalchemy_engine(), autoflush=False, autocommit=False, expire_on_commit=True)
+    return session_local()
 
 
 # Example usage

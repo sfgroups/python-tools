@@ -17,6 +17,9 @@ A longer description of your project goes here...
 
    pip install -e .[testing]
 
+    alembic upgrade ae1027a6acf --sql
+
+
 
 pytest::
 
@@ -50,3 +53,7 @@ console.log(hasHTMLCharacters(string1)); // false
 console.log(hasHTMLCharacters(string2)); // true
 console.log(hasHTMLCharacters(string3)); // true
 ```
+
+alembic revision --autogenerate -m "Added lastrun table"
+alembic revision --autogenerate -m "Added lastrun table"
+alembic upgrade head

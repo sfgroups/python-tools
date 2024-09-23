@@ -20,3 +20,5 @@ requests
 selenium
 sqlalchemy
 uvicorn
+dataclasses-json
+dataclasses
