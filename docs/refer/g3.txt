@@ -1,0 +1,25 @@
+Knowledge Sharing and CVE Security Remediation
+
+Objective: Share expertise and provide guidance to the team on remediating CVE security vulnerabilities, adopting Docker container best practices, and utilizing CPS-approved base images. As a Subject Matter Expert (SME) in Python and SSL certificates, actively assist in team development and issue resolution.
+
+Key Results:
+
+CVE Security Issue Remediation:
+Assist the team in identifying, prioritizing, and remediating CVE vulnerabilities, ensuring all Critical and High-severity issues are addressed within SLA (e.g., 15 business days).
+Conduct bi-weekly meetings to review open CVEs, discuss remediation strategies, and ensure that vulnerabilities in Docker containers are resolved using CPS-approved base images.
+Best Practices for Docker Containers:
+Educate the team on Docker container security best practices, such as minimizing the attack surface, avoiding unnecessary privileges, and securing container communications.
+Ensure 100% of Docker images used across teams are based on CPS-approved base images, verified for security and compliance.
+Python and SSL Certificates SME:
+As a recognized SME in Python and SSL certificates, resolve at least 90% of queries from team members regarding Python development and SSL certificate handling within 2 business days.
+Provide targeted workshops or knowledge-sharing sessions on Python best practices and SSL/TLS security once per quarter to elevate the team’s competency in these areas.
+Ongoing Knowledge Sharing:
+Regularly contribute to internal forums or documentation platforms (e.g., Stack Overflow for Teams) with solutions, best practices, and lessons learned on CVE remediation, Docker security, and Python/SSL-related issues.
+Maintain an updated internal knowledge base of common security issues and their resolutions, with clear, actionable guidance for the team.
+Success Criteria:
+
+Improved team efficiency in remediating CVEs, demonstrated by timely closure of Critical/High vulnerabilities.
+All Docker containers built using CPS-approved base images with no security policy violations.
+Positive feedback from the team on knowledge-sharing sessions and SME assistance, as measured by feedback forms or performance reviews.
+Increased self-sufficiency of team members in handling Python and SSL-related tasks.
+This performance goal highlights your role in promoting security best practices, mentoring team members, and sharing your SME knowledge to improve the team’s overall competency and efficiency.

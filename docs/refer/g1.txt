@@ -1,0 +1,20 @@
+Application Security Remediation
+
+Objective: Improve overall application security by remediating vulnerabilities identified through Twistlock, SonarQube, Fortify, and Black Duck code scanning tools.
+
+Key Results:
+
+Remediate Identified Vulnerabilities:
+Address and resolve all Critical and High-severity vulnerabilities from Twistlock CVE scans within 15 business days of identification.
+Remediate 80% of Medium-severity vulnerabilities within 30 business days.
+Code Scan Security Issues:
+Review, prioritize, and fix at least 95% of the security issues detected by SonarQube, Fortify, and Black Duck scans on a weekly basis.
+Achieve zero open Critical security issues in SonarQube and Fortify by the end of each sprint.
+Continuous Monitoring & Reporting:
+Implement automated scanning for continuous monitoring, ensuring no new Critical or High vulnerabilities remain unaddressed for more than 10 business days.
+Provide weekly reports on remediation progress, detailing resolved, pending, and newly identified vulnerabilities.
+Success Criteria:
+
+100% of Critical and High-severity vulnerabilities resolved within SLA.
+Compliance with security best practices as evidenced by passing SonarQube, Fortify, and Black Duck scans with no blocking issues.
+Reduced application security risk as demonstrated by lower vulnerability counts in monthly scans.
