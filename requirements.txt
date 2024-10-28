@@ -22,3 +22,6 @@ sqlalchemy
 uvicorn
 dataclasses-json
 dataclasses
+openai
+matplotlib
+scipy

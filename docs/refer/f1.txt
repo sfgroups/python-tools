@@ -1,0 +1,3 @@
+<name> made significant contributions to the Appfit project, starting with module design and framework development. He bootstrapped the application using the Sprint methodology, introduced the Consul for configuration management, and played a key role in creating the container. Additionally, he was instrumental in setting up the pipeline and successfully deploying the application to production."
+
+This revision keeps the focus on Manohar’s contributions and provides a clear, professional overview of his involvement and impact on the project
