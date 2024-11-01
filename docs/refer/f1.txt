@@ -1,3 +1,7 @@
 <name> made significant contributions to the Appfit project, starting with module design and framework development. He bootstrapped the application using the Sprint methodology, introduced the Consul for configuration management, and played a key role in creating the container. Additionally, he was instrumental in setting up the pipeline and successfully deploying the application to production."
 
-This revision keeps the focus on Manohar’s contributions and provides a clear, professional overview of his involvement and impact on the project
+This revision keeps the focus on <name>’s contributions and provides a clear, professional overview of his involvement and impact on the project
+
+--
+<name> has made essential contributions to the project, particularly in frontend development using the ReactJS framework.
+ His deep understanding of UI development has been evident throughout, and his ability to independently set up and develop the <app> editor for the Shield Console has been invaluable. Bala took full ownership of this aspect, from initial development to writing comprehensive unit tests. His commitment to quality and self-sufficiency in managing complex tasks has positively impacted the project, and his expertise has strengthened the team’s capabilities in UI and frontend development.
