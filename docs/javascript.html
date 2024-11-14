@@ -1,0 +1,29 @@
+function onLoad() {
+    var backupSpan = gel('backup');
+    if (backupSpan) {
+        backupSpan.style.display = 'none';
+    }
+}
+
+function onLoad() {
+    addLoadEvent(function() {
+        var backupSpan = document.getElementById('backup');
+        if (backupSpan) {
+            backupSpan.style.display = 'none';
+        }
+    });
+}
+
+function addLoadEvent(func) {
+    var oldOnload = window.onload;
+    if (typeof window.onload != 'function') {
+        window.onload = func;
+    } else {
+        window.onload = function() {
+            if (oldOnload) {
+                oldOnload();
+            }
+            func();
+        }
+    }
+}
